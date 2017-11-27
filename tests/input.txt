@@ -1,0 +1,122 @@
+=== simulation ===
+
+generate_micrographs = yes
+log_file = micrograph.log
+
+=== sample ===
+
+diameter = 500
+thickness_center = 100
+thickness_edge = 100
+
+=== particle proteasome ===
+
+source = pdb
+pdb_file_in = 3mg0.pdb
+add_hydrogen = yes
+
+# voxel size is in nm
+voxel_size = 0.1 
+
+map_file_re_out = 3mg0_map.mrc
+map_file_im_out = 3mg0_abs_map.mrc
+
+=== particleset ===
+
+particle_type = proteasome
+particle_coords = random
+num_particles = 100
+where = volume
+coord_file_out = proteasome_coordinates.txt
+
+=== geometry ===
+
+gen_tilt_data = yes
+tilt_axis = 0
+ntilts = 1
+theta_start = 0
+theta_incr = 0
+geom_errors = none
+
+=== electronbeam ===
+
+acc_voltage = 300
+energy_spread = 1.3
+gen_dose = yes
+# electron dose is in electrons per nm^2
+total_dose = 3000
+dose_sd = 0
+
+=== optics ===
+
+# The magnification is 50000 times. The spherical aberration cs, and the
+# chromatic aberration cc are in mm. The diameter of the aperture in the
+# focal plane is in micrometer, and the focal length of the primary lens
+# is in mm. The aperture angle of the condenser lens is in milliradian.
+
+magnification = 50000
+cs = 2.62
+cc = 2.0
+aperture = 40
+focal_length = 2.7
+cond_ap_angle = 0.1
+
+gen_defocus = yes
+defocus_nominal = 3.0
+
+=== detector ===
+
+det_pix_x = 2000
+det_pix_y = 2000
+
+# The physical size of the detector in micrometers.
+# set to 1 A/pix
+
+pixel_size = 16
+gain = 80
+
+# A realistic simulation should use quantization of the electron detection, as
+# this is the dominating source of noise in real micrographs. Removing this 
+# source of noise can sometimes be useful, for example to check that the 
+# simulation is set up correctly.
+
+use_quantization = yes
+
+# The detector quantum efficiency is a number between 0 and 1. An ideal detector
+# would have DQE = 1.
+
+dqe = 1
+
+# The MTF parameters control the blurring of the image as it is transferred from
+# the scintillator to the actual detector, such as a CCD.
+
+mtf_a = 0.7
+mtf_b = 0.2
+mtf_c = 0.1
+mtf_alpha = 10
+mtf_beta = 40
+
+# The images are all written to a single MRC file called highdose.mrc
+
+image_file_out = micrograph.mrc
+
+=== detector ===
+
+# It is possible to use several detectors in the same simulation. Since most of
+# the computations can be reused, this is faster than running several separate
+# simulations if only the detector parameters are different. This second detector
+# is identical to the first one, except that quantization noise is not included.
+# Of course the output has to be written to a separate file.
+
+det_pix_x = 2000
+det_pix_y = 2000
+pixel_size = 16
+gain = 80
+use_quantization = no
+dqe = 1
+mtf_a = 0.7
+mtf_b = 0.2
+mtf_c = 0.1
+mtf_alpha = 10
+mtf_beta = 40
+image_file_out = micrograph_nonoise.mrc

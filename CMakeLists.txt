@@ -3,7 +3,7 @@ project(TEM-Simulator)
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -pedantic -O3")
 
-AUX_SOURCE_DIRECTORY(. SOURCE_FILES)
+AUX_SOURCE_DIRECTORY(src SOURCE_FILES)
 
 include_directories(C:/mingw-w64/libs/include)
 link_directories(C:/mingw-w64/libs/lib)
