@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.8)
 project(TEM-Simulator)
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -pedantic -O3")
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wall -pedantic -g")
+set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -Wall -pedantic -O3")
 
 AUX_SOURCE_DIRECTORY(src SOURCE_FILES)
 
