@@ -21,6 +21,7 @@
 
 #ifndef INPUT_HEADER
 #define INPUT_HEADER
+
 #include <stdio.h>
 #include "macros.h"
 
@@ -33,26 +34,26 @@
 typedef char boolean;
 
 typedef struct {
-  char *name;     /* name of the parameter */
-  char *descr;    /* description, used for help messages */
-  char type;      /* type of the parameter: boolean, int, long, float, double, string */
-  char set;       /* has parameter been set? */
-  char req;       /* is parameter required? */
-  char *def;      /* optional default value */
-  char *allowed;  /* optional list of allowed values for string parameter */
-  double minval;  /* optional minimum value of numerical parameter */
-  double maxval;  /* optional maximum value of numerical parameter */
-  void *addr;     /* pointer to address where value is stored */
+    char *name;     /* name of the parameter */
+    char *descr;    /* description, used for help messages */
+    char type;      /* type of the parameter: boolean, int, long, float, double, string */
+    char set;       /* has parameter been set? */
+    char req;       /* is parameter required? */
+    char *def;      /* optional default value */
+    char *allowed;  /* optional list of allowed values for string parameter */
+    double minval;  /* optional minimum value of numerical parameter */
+    double maxval;  /* optional maximum value of numerical parameter */
+    void *addr;     /* pointer to address where value is stored */
 } param;
 
 typedef struct {
-  param *params;  /* pointer to list of parameters */
-  int length;     /* length of list (including unused parameters) */
-  int used;       /* number of used parameters in list */
-  char lock;      /* if the table is locked values can not be changed */
-  char *name;     /* name of table (for log files and error messages) */
-  char *class;    /* class of table (for log files and error messages) */
-  char *descr;    /* description (for help messages) */
+    param *params;  /* pointer to list of parameters */
+    int length;     /* length of list (including unused parameters) */
+    int used;       /* number of used parameters in list */
+    char lock;      /* if the table is locked values can not be changed */
+    char *name;     /* name of table (for log files and error messages) */
+    char *class;    /* class of table (for log files and error messages) */
+    char *descr;    /* description (for help messages) */
 } param_table;
 
 
@@ -73,8 +74,8 @@ typedef struct {
  * Return:    Pointer to allocated table.
  */
 
-param_table *new_param_table(int n, 
-                             const char *class, 
+param_table *new_param_table(int n,
+                             const char *class,
                              const char *name);
 
 
@@ -98,7 +99,7 @@ void delete_param_table(param_table *P);
  *                     set to unlocked, otherwise it is set to locked.
  */
 
-void param_table_set_lock(param_table *P, 
+void param_table_set_lock(param_table *P,
                           char locked);
 
 
@@ -119,11 +120,11 @@ void param_table_set_lock(param_table *P,
  * Return:    Pointer to added parameter.
  */
 
-param *add_param(param_table *P, 
-                 const char *name, 
-                 const char *type, 
-                 char req, 
-                 double min, 
+param *add_param(param_table *P,
+                 const char *name,
+                 const char *type,
+                 char req,
+                 double min,
                  double max);
 
 
@@ -135,8 +136,8 @@ param *add_param(param_table *P,
  *            type - type of parameter. See add_param.
  */
 
-param *add_param_req(param_table *P, 
-                     const char *name, 
+param *add_param_req(param_table *P,
+                     const char *name,
                      const char *type);
 
 
@@ -148,8 +149,8 @@ param *add_param_req(param_table *P,
  *            type - type of parameter. See add_param.
  */
 
-param *add_param_opt(param_table *P, 
-                     const char *name, 
+param *add_param_opt(param_table *P,
+                     const char *name,
                      const char *type);
 
 
@@ -163,16 +164,17 @@ param *add_param_opt(param_table *P,
  *            value - string representation of default value.
  */
 
-param *add_param_def(param_table *P, 
-                     const char *name, 
-                     const char *type, 
+param *add_param_def(param_table *P,
+                     const char *name,
+                     const char *type,
                      const char *value);
 
 param *add_param_req_constr(param_table *P, const char *name, const char *type, double minval, double maxval);
 
 param *add_param_opt_constr(param_table *P, const char *name, const char *type, double minval, double maxval);
 
-param *add_param_def_constr(param_table *P, const char *name, const char *type, const char *value, double minval, double maxval);
+param *add_param_def_constr(param_table *P, const char *name, const char *type, const char *value, double minval,
+                            double maxval);
 
 int set_param_char(param_table *pt, const char *name, char value);
 

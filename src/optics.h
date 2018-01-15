@@ -21,6 +21,7 @@
 
 #ifndef OPTICS_HEADER
 #define OPTICS_HEADER
+
 #include "input.h"
 #include "structs.h"
 
@@ -58,7 +59,7 @@ void delete_optics(optics *o);
  * Return:    0 on success, nonzero on failure.
  */
 
-int optics_init(optics *o, 
+int optics_init(optics *o,
                 simulation *sim);
 
 
@@ -151,7 +152,12 @@ double optics_get_cc(optics *o);
  * Return:    Defocus converted to standard length unit.
  */
 
-double optics_get_defocus(optics *o, 
+double optics_get_defocus(optics *o,
                           long tilt);
+
+// phase plate parameters
+double optics_get_phase_shift(optics *o);
+
+double optics_get_phase_plate_spot_size(optics *o);
 
 #endif

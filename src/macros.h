@@ -68,15 +68,15 @@
 
 #define _USE_MATH_DEFINES
 
-#define FOPEN(filepointer,filename,mode) fopen_s(&(filepointer), filename, mode)
+#define FOPEN(filepointer, filename, mode) fopen_s(&(filepointer), filename, mode)
 
-#define STRNCPY(dest,destsize,source,num) strncpy_s(dest, destsize, source, num)
+#define STRNCPY(dest, destsize, source, num) strncpy_s(dest, destsize, source, num)
 
 #define SNPRINTF sprintf_s
 
 #define VSNPRINTF vsnprintf_win
 
-#define VSNPRINTFCOUNT(format,vararg) (MAX_LINE_LENGTH + strlen(format))
+#define VSNPRINTFCOUNT(format, vararg) (MAX_LINE_LENGTH + strlen(format))
 
 #define STRTOK strtok_win
 
@@ -107,7 +107,7 @@
 
 /* The macro M_PI from math.h is needed below. The include must be after
  * _USE_MATH_DEFINES is defined if this should work in Windows. */
-#include <math.h> 
+#include <math.h>
 
 
 /* Units used for certain input and output */
@@ -256,6 +256,8 @@
 #define PAR_PARTICLE_TYPE           "particle_type"
 #define PAR_PDB_FILE_IN             "pdb_file_in"
 #define PAR_PDB_TRANSF_FILE_IN      "pdb_transf_file_in"
+#define PAR_PHASE_SHIFT             "phase_shift"
+#define PAR_PHASE_SPOT              "phase_plate_spot"
 #define PAR_PIXEL_SIZE              "pixel_size"
 #define PAR_RAND_SEED               "rand_seed"
 #define PAR_SMOOTHNESS              "smoothness"
