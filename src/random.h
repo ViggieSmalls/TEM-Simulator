@@ -23,6 +23,12 @@
 #define RANDOM_HEADER
 
 /*
+ * rand_seed(s)
+ * Seed random number generation
+ */
+void rand_seed(unsigned int s);
+
+/*
  * rand_uniform(a, b)
  * uniform random variable in a <= x < b.
  */

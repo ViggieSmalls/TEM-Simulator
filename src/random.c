@@ -23,12 +23,53 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <stdint.h>
 #include "random.h"
 
 /****************************************************************************/
 
+typedef uint64_t rand_state_type;
+
+const rand_state_type rand_int_max = 1 << 16;
+
+static rand_state_type rand_state = 1;
+
+void rand_seed(unsigned int s) {
+  int i;
+  if(s == 0){
+    /* The algorithm relies on the state being non-zero. */
+    rand_state = 1;
+  }
+  else {
+    rand_state = s;
+  }
+}
+
+/* A simple implementation of xorshift* pseudo random number generator. */
+rand_state_type rand_int() {
+  rand_state_type x = rand_state;
+  rand_state_type m = 0x2545F491;
+  m <<= 32;
+  m += 0x4F6CDD1D;
+  x ^= x >> 12;
+  x ^= x << 25;
+  x ^= x >> 27;
+  rand_state = x;
+  return ((x * m) >> 32) % rand_int_max;
+}
+
+double rand_uniform_01() {
+  return rand_int()/(rand_int_max + 1.0);
+}
+
+double rand_uniform_eps1() {
+  return (rand_int() + 1.0)/(rand_int_max + 2.0);
+}
+
+/****************************************************************************/
+
 double rand_uniform(double a, double b){
-  return a + (b-a)*rand()/(RAND_MAX + 1.0);
+  return a + (b-a)*rand_uniform_01();
 }
 
 /****************************************************************************
@@ -48,7 +89,7 @@ long rand_poisson(double a){
     j = 0;
     while(a >= 0){
       j++;
-      s = (1.0 + rand())/(RAND_MAX + 2.0);
+      s = rand_uniform_eps1();
       a += log(s);
     }
     return j-1;
@@ -62,7 +103,7 @@ long rand_poisson(double a){
       return k;
     }
     else if(k >= 0){
-      u = rand_uniform(0,1);
+      u = rand_uniform_01();
       if(d*u >= pow(a-k, 3)){
 	return k;
       }
@@ -139,7 +180,7 @@ long rand_poisson(double a){
       x2 = x*x;
       fx = -0.5*x2;
       fy = omega * (((c3*x2 + c2)*x2 + c1)*x2 + c0);
-      if(c*rand_uniform(0,1) <= py * exp(px + e) - fy * exp(fx + e)){
+      if(c*rand_uniform_01() <= py * exp(px + e) - fy * exp(fx + e)){
 	return k;
       }
     }
@@ -150,8 +191,8 @@ long rand_poisson(double a){
 
 double rand_gauss(double a, double b){
   double s, t;
-  s = (1.0 + rand())/(RAND_MAX + 2.0);
-  t = rand()*2.0*M_PI/(RAND_MAX + 1.0);
+  s = rand_uniform_eps1();
+  t = 2.0*M_PI*rand_uniform_01();
   return a + b*sqrt(-2.0*log(s))*cos(t);
 }
 
@@ -176,7 +217,7 @@ double rand_wald(double a, double b){
 
 double rand_exp(double a){
   double s;
-  s = (1.0 + rand())/(RAND_MAX + 2.0);
+  s = rand_uniform_eps1();
   return -a*log(s);
 }
 
