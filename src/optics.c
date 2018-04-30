@@ -99,12 +99,8 @@ param_table *optics_param_table(const char *name) {
     add_param_req_constr(pt, PAR_COND_AP_ANGLE, "d", 0, HUGE_VAL);
 
     // phase shift parameters
-    //TODO: make optional
-    //add_param_def_constr(pt, PAR_PHASE_SHIFT, "d", "0", 0, 2);
-    //add_param_def_constr(pt, PAR_PHASE_SPOT, "d", "0", 0, HUGE_VAL);
-    add_param_req(pt, PAR_PHASE_SHIFT, "d");
-    //FIXME: I dont like the parameter name. Refractor
-    add_param_req(pt, PAR_PHASE_SPOT, "d");
+    add_param_def_constr(pt, PAR_PHASE_SHIFT, "d", "0", 0, 2);
+    add_param_def_constr(pt, PAR_PHASE_SPOT, "d", "0", 0, 1);
 
     set_comp_descr(pt, "The optics component specifies the characteristics of \
 the optical system in the microscope. Most of the optical parameters stay the \
