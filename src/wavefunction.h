@@ -21,6 +21,7 @@
 
 #ifndef WAVEFUNCTION_HEADER
 #define WAVEFUNCTION_HEADER
+
 #include "structs.h"
 
 
