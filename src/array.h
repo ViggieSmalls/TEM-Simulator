@@ -32,15 +32,15 @@
  * allocated memory.
  ***********************************************************************/
 
-typedef double   array_data_type;
+typedef double array_data_type;
 typedef long int array_index_type;
 
 typedef struct {
-  array_index_type size[3];     /* Size of the array */
-  array_index_type nalloc;      /* Size of allocated memory */
-  int              prealloc;    /* Memory is preallocated, array should not free */
-  int              *ref_count;  /* Reference counter for shared memory */
-  array_data_type  *data;       /* Pointer to memory storing contents of array */
+    array_index_type size[3];     /* Size of the array */
+    array_index_type nalloc;      /* Size of allocated memory */
+    int prealloc;    /* Memory is preallocated, array should not free */
+    int *ref_count;  /* Reference counter for shared memory */
+    array_data_type *data;       /* Pointer to memory storing contents of array */
 } array;
 
 
@@ -56,9 +56,9 @@ typedef struct {
  *            can cause memory leaks. 
  */
 
-int init_array(array *a, 
-               array_index_type n1, 
-               array_index_type n2, 
+int init_array(array *a,
+               array_index_type n1,
+               array_index_type n2,
                array_index_type n3);
 
 /***********************************************************************
@@ -74,9 +74,9 @@ int init_array(array *a,
  *            can cause memory leaks. 
  */
 
-int init_array_alloc(array *a, 
-                     array_index_type n1, 
-                     array_index_type n2, 
+int init_array_alloc(array *a,
+                     array_index_type n1,
+                     array_index_type n2,
                      array_index_type n3,
                      array_index_type nalloc);
 
@@ -92,10 +92,10 @@ int init_array_alloc(array *a,
  *            initialized, can cause memory leaks. 
  */
 
-int init_array_shared(array *a, 
-                      array_index_type n1, 
-                      array_index_type n2, 
-                      array_index_type n3, 
+int init_array_shared(array *a,
+                      array_index_type n1,
+                      array_index_type n2,
+                      array_index_type n3,
                       array *b);
 
 /***********************************************************************
@@ -113,10 +113,10 @@ int init_array_shared(array *a,
  *            initialized, can cause memory leaks. 
  */
 
-int init_array_prealloc(array *a, 
-                        array_index_type n1, 
-                        array_index_type n2, 
-                        array_index_type n3, 
+int init_array_prealloc(array *a,
+                        array_index_type n1,
+                        array_index_type n2,
+                        array_index_type n3,
                         void *x);
 
 
@@ -163,9 +163,9 @@ array_index_type nele_array(const array *a);
  * Return:    Nonzero if (i,j,k) is a valid index into a.
  */
 
-int array_index_in_range(const array *a, 
-                         array_index_type i, 
-                         array_index_type j, 
+int array_index_in_range(const array *a,
+                         array_index_type i,
+                         array_index_type j,
                          array_index_type k);
 
 
@@ -179,10 +179,10 @@ int array_index_in_range(const array *a,
  *            array_index_in_range) set_array_entry does nothing.
  */
 
-void set_array_entry(array *a, 
-                     array_index_type i, 
-                     array_index_type j, 
-                     array_index_type k, 
+void set_array_entry(array *a,
+                     array_index_type i,
+                     array_index_type j,
+                     array_index_type k,
                      array_data_type x);
 
 
@@ -196,10 +196,10 @@ void set_array_entry(array *a,
  *            array_index_in_range) add_to_array_entry does nothing.
  */
 
-void add_to_array_entry(array *a, 
-                        array_index_type i, 
-                        array_index_type j, 
-                        array_index_type k, 
+void add_to_array_entry(array *a,
+                        array_index_type i,
+                        array_index_type j,
+                        array_index_type k,
                         array_data_type x);
 
 
@@ -212,9 +212,9 @@ void add_to_array_entry(array *a,
  *            a the function returns zero.
  */
 
-array_data_type get_array_entry(const array *a, 
-                                array_index_type i, 
-                                array_index_type j, 
+array_data_type get_array_entry(const array *a,
+                                array_index_type i,
+                                array_index_type j,
                                 array_index_type k);
 
 
@@ -227,9 +227,9 @@ array_data_type get_array_entry(const array *a,
  *            into a the function returns a null pointer.
  */
 
-array_data_type *get_array_entry_ptr(array *a, 
-                                     array_index_type i, 
-                                     array_index_type j, 
+array_data_type *get_array_entry_ptr(array *a,
+                                     array_index_type i,
+                                     array_index_type j,
                                      array_index_type k);
 
 
@@ -240,7 +240,7 @@ array_data_type *get_array_entry_ptr(array *a,
  *            x - Value which is set in all entries.
  */
 
-int fill_array(array *a, 
+int fill_array(array *a,
                array_data_type x);
 
 
@@ -251,7 +251,7 @@ int fill_array(array *a,
  * Return:    Nonzero if arrays have the same size.
  */
 
-int same_size_array(const array *a, 
+int same_size_array(const array *a,
                     const array *b);
 
 
@@ -264,7 +264,7 @@ int same_size_array(const array *a,
  *            not have the same size.
  */
 
-int copy_array(const array *a, 
+int copy_array(const array *a,
                array *b);
 
 
@@ -276,7 +276,7 @@ int copy_array(const array *a,
  * Return:    Zero on success, nonzero on failure.
  */
 
-int add_array_const(array *a, 
+int add_array_const(array *a,
                     array_data_type x);
 
 
@@ -289,8 +289,8 @@ int add_array_const(array *a,
  *            not have the same size.
  */
 
-int add_array(const array *a, 
-              array *b, 
+int add_array(const array *a,
+              array *b,
               array_data_type x);
 
 
@@ -305,10 +305,10 @@ int add_array(const array *a,
  * Return:    Zero on success, nonzero on failure.
  */
 
-int add_array_offset(array *a, 
-                     array *b, 
-                     array_index_type i, 
-                     array_index_type j, 
+int add_array_offset(array *a,
+                     array *b,
+                     array_index_type i,
+                     array_index_type j,
                      array_index_type k);
 
 
@@ -320,7 +320,7 @@ int add_array_offset(array *a,
  * Return:    Zero on success, nonzero on failure.
  */
 
-int mult_array_const(array *a, 
+int mult_array_const(array *a,
                      array_data_type x);
 
 
@@ -332,7 +332,7 @@ int mult_array_const(array *a,
  *            not have the same size. 
  */
 
-int mult_array(const array *a, 
+int mult_array(const array *a,
                array *b);
 
 
@@ -398,7 +398,17 @@ array_data_type boundary_mean_array(const array *a);
  *            not have the same size. 
  */
 
-int laplace_array(const array *a, 
+int laplace_array(const array *a,
                   array *b);
+
+/***********************************************************************
+ * Function:  randomize_array
+ * Purpose:   Randomize the values inside the array. *a is replaced with
+ *            a random gauss variable with mean 0 and stdev *a.
+ * Arguments: a - Pointer to array.
+ * Return:    Zero on success, nonzero on failure.
+ */
+
+int randomize_array(array *a);
 
 #endif
