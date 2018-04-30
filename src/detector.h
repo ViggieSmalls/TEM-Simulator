@@ -21,6 +21,7 @@
 
 #ifndef DETECTOR_HEADER
 #define DETECTOR_HEADER
+
 #include "input.h"
 #include "structs.h"
 
@@ -57,7 +58,7 @@ void delete_detector(detector *d);
  * Return:    0 on success, nonzero on failure.
  */
 
-int detector_init(detector *d, 
+int detector_init(detector *d,
                   simulation *sim);
 
 
@@ -78,9 +79,9 @@ int detector_init(detector *d,
  * Return:    0 on success, nonzero on failure.
  */
 
-int detector_init_share(detector *d, 
-                        simulation *sim, 
-                        array *count, 
+int detector_init_share(detector *d,
+                        simulation *sim,
+                        array *count,
                         array *count_ft);
 
 
@@ -162,8 +163,8 @@ int detector_apply_mtf(detector *d);
  * Return:    0 on success, nonzero on failure.
  */
 
-int detector_get_intensity(detector *d, 
-                           wavefunction *wf, 
+int detector_get_intensity(detector *d,
+                           wavefunction *wf,
                            long tilt);
 
 

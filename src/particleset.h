@@ -21,6 +21,7 @@
 
 #ifndef PARTICLESET_HEADER
 #define PARTICLESET_HEADER
+
 #include "structs.h"
 
 
@@ -57,7 +58,7 @@ void delete_particleset(particleset *ps);
  * Return:    0 on success, nonzero on failure.
  */
 
-int particleset_init(particleset *ps, 
+int particleset_init(particleset *ps,
                      simulation *sim);
 
 
@@ -83,17 +84,17 @@ void particleset_reset(particleset *ps);
 
 int particleset_write_log(particleset *ps);
 
-int rotate_particle(matrix *pm, 
-                    particleset *ps, 
+int rotate_particle(matrix *pm,
+                    particleset *ps,
                     long i);
 
-int get_particle_pos(double pos[3], 
-                     particleset *ps, 
+int get_particle_pos(double pos[3],
+                     particleset *ps,
                      long i);
 
-int get_particle_coord(matrix *pm, 
-                       double pos[3], 
-                       particleset *ps, 
+int get_particle_coord(matrix *pm,
+                       double pos[3],
+                       particleset *ps,
                        long i);
 
 int mask_particle(const particle *particle_org,

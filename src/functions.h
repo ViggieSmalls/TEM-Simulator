@@ -21,6 +21,7 @@
 
 #ifndef FUNCTIONS
 #define FUNCTIONS
+
 #include "array.h"
 
 /***********************************************************************
@@ -33,9 +34,9 @@
  ***********************************************************************/
 
 typedef struct {
-  array values;
-  double basis[4];
-  double offset[2];
+    array values;
+    double basis[4];
+    double offset[2];
 } vecf2d;
 
 
@@ -47,7 +48,7 @@ typedef struct {
  *            range - after return, contains {xmin, xmax, ymin, ymax}.
  */
 
-void vecf2d_xyrange(const vecf2d *a, 
+void vecf2d_xyrange(const vecf2d *a,
                     double range[4]);
 
 
@@ -60,7 +61,7 @@ void vecf2d_xyrange(const vecf2d *a,
  * Arguments: a, b - pointers to the vecf2d objects.
  */
 
-void vecf2d_add(const vecf2d *a, 
+void vecf2d_add(const vecf2d *a,
                 vecf2d *b);
 
 #endif

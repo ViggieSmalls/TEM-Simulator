@@ -21,26 +21,29 @@
 
 #ifndef MRC_HEADER
 #define MRC_HEADER
+
 #include "array.h"
 #include "matrix.h"
 
 typedef struct {
-  int size[3];
-  int mode;
-  double cell[3];
-  int dims[3];
-  double amin;
-  double amax;
-  double amean;
-  int next;
-  int rev;
+    int size[3];
+    int mode;
+    double cell[3];
+    int dims[3];
+    double amin;
+    double amax;
+    double amean;
+    int next;
+    int rev;
 } mrcheaderdata;
 
 typedef int int4b;     /* This must be a 4 byte integer type */
 typedef short int2b;   /* This must be a 2 byte integer type */
 typedef float float4b; /* This must be a 4 byte floating point type */
 
-enum file_header_type {no_header, mrc_header};
+enum file_header_type {
+    no_header, mrc_header
+};
 
 int read_array_float4b_raw(array *a, const char *fn, const char *axis_order, int rev);
 
@@ -50,9 +53,13 @@ int read_float4b_data(double *a, FILE *fp, long size[3], long steps[3], int rev)
 
 int read_int2b_data(double *a, FILE *fp, long size[3], long steps[3], int rev);
 
-int write_array_float4b(const array *a, const char *fn, enum file_header_type header_type, const char *axis_order, int rev, double voxel_size);
+int
+write_array_float4b(const array *a, const char *fn, enum file_header_type header_type, const char *axis_order, int rev,
+                    double voxel_size);
 
-int write_array_int2b(const array *a, const char *fn, enum file_header_type header_type, const char *axis_order, int rev, double voxel_size, double conv_factor);
+int
+write_array_int2b(const array *a, const char *fn, enum file_header_type header_type, const char *axis_order, int rev,
+                  double voxel_size, double conv_factor);
 
 int write_float4b_data(double *a, FILE *fp, long size[3], long steps[3], int rev, double min_max_mean[3]);
 

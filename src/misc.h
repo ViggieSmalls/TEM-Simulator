@@ -21,6 +21,7 @@
 
 #ifndef MISC_HEADER
 #define MISC_HEADER
+
 #include <stdio.h>
 
 void err_message(char *fmt, ...);

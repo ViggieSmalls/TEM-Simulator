@@ -22,6 +22,7 @@
 
 #ifndef SIMULATION_HEADER
 #define SIMULATION_HEADER
+
 #include "input.h"
 #include "macros.h"
 #include "structs.h"

@@ -21,6 +21,7 @@
 
 #ifndef GEOMETRY_HEADER
 #define GEOMETRY_HEADER
+
 #include "input.h"
 #include "structs.h"
 
@@ -58,7 +59,7 @@ void delete_geometry(geometry *g);
  * Return:    0 on success, nonzero on failure.
  */
 
-int geometry_init(geometry *g, 
+int geometry_init(geometry *g,
                   simulation *sim);
 
 
@@ -98,8 +99,8 @@ int geometry_write_log(geometry *g);
  * Return:    0 on success, nonzero on failure.
  */
 
-int set_proj_matrix(matrix *pm, 
-                    geometry *g, 
+int set_proj_matrix(matrix *pm,
+                    geometry *g,
                     long tilt);
 
 
@@ -121,11 +122,11 @@ int set_proj_matrix(matrix *pm,
  * Return:    0 on success, nonzero on failure.
  */
 
-int get_particle_geom(matrix *pm, 
-                      double pos[3], 
-                      particleset *ps, 
-                      long i, 
-                      geometry *g, 
+int get_particle_geom(matrix *pm,
+                      double pos[3],
+                      particleset *ps,
+                      long i,
+                      geometry *g,
                       long tilt);
 
 
@@ -146,10 +147,10 @@ int get_particle_geom(matrix *pm,
  * Return:    0 on success, nonzero on failure.
  */
 
-int get_sample_geom(matrix *pm, 
-                    double pos[3], 
-                    sample *s, 
-                    geometry *g, 
+int get_sample_geom(matrix *pm,
+                    double pos[3],
+                    sample *s,
+                    geometry *g,
                     long tilt);
 
 #endif

@@ -21,6 +21,7 @@
 
 #ifndef ELECTRONBEAM_HEADER
 #define ELECTRONBEAM_HEADER
+
 #include "input.h"
 #include "structs.h"
 
@@ -57,7 +58,7 @@ void delete_electronbeam(electronbeam *ed);
  * Return:    0 on success, nonzero on failure.
  */
 
-int electronbeam_init(electronbeam *ed, 
+int electronbeam_init(electronbeam *ed,
                       simulation *sim);
 
 
@@ -118,8 +119,8 @@ double potential_conv_factor(double acc_en);
  * Return:    Differential cross section.
  */
 
-double diff_cross_sec(double acc_en, 
-                      double Z, 
+double diff_cross_sec(double acc_en,
+                      double Z,
                       double theta);
 
 
@@ -134,7 +135,7 @@ double diff_cross_sec(double acc_en,
  * Return:    Cross section.
  */
 
-double cross_sec(double acc_en, 
+double cross_sec(double acc_en,
                  double Z);
 
 
@@ -151,8 +152,8 @@ double cross_sec(double acc_en,
  * Return:    Cross section
  */
 
-double cross_sec_thr(double acc_en, 
-                     double Z, 
+double cross_sec_thr(double acc_en,
+                     double Z,
                      double theta);
 
 
@@ -168,8 +169,8 @@ double cross_sec_thr(double acc_en,
  * Return:    Differential cross section.
  */
 
-double diff_el_cross_sec(double acc_en, 
-                         double Z, 
+double diff_el_cross_sec(double acc_en,
+                         double Z,
                          double theta);
 
 
@@ -184,7 +185,7 @@ double diff_el_cross_sec(double acc_en,
  * Return:    Cross section.
  */
 
-double el_cross_sec(double acc_en, 
+double el_cross_sec(double acc_en,
                     double Z);
 
 
@@ -200,8 +201,8 @@ double el_cross_sec(double acc_en,
  * Return:    Cross section
  */
 
-double el_cross_sec_thr(double acc_en, 
-                        double Z, 
+double el_cross_sec_thr(double acc_en,
+                        double Z,
                         double theta);
 
 
@@ -217,8 +218,8 @@ double el_cross_sec_thr(double acc_en,
  * Return:    Differential cross section.
  */
 
-double diff_inel_cross_sec(double acc_en, 
-                           double Z, 
+double diff_inel_cross_sec(double acc_en,
+                           double Z,
                            double theta);
 
 
@@ -233,7 +234,7 @@ double diff_inel_cross_sec(double acc_en,
  * Return:    Cross section.
  */
 
-double inel_cross_sec(double acc_en, 
+double inel_cross_sec(double acc_en,
                       double Z);
 
 
@@ -249,8 +250,8 @@ double inel_cross_sec(double acc_en,
  * Return:    Cross section
  */
 
-double inel_cross_sec_thr(double acc_en, 
-                          double Z, 
+double inel_cross_sec_thr(double acc_en,
+                          double Z,
                           double alpha);
 
 

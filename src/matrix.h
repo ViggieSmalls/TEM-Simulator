@@ -21,11 +21,12 @@
 
 #ifndef MATRIX_HEADER
 #define MATRIX_HEADER
+
 #include <stdarg.h>
 
 typedef struct {
-  long m, n;
-  double *data;
+    long m, n;
+    double *data;
 } matrix;
 
 void init_matrix(matrix *a, long m, long n);
@@ -70,7 +71,8 @@ int read_matrix_text(matrix *a, const char *fn);
 
 int read_matrix_text_conv(matrix *a, const char *fn, long nconv, const double *conv);
 
-int write_matrix_text_valist(const matrix *a, const char *fn, long nconv, const double *conv, long nhead, va_list header);
+int
+write_matrix_text_valist(const matrix *a, const char *fn, long nconv, const double *conv, long nhead, va_list header);
 
 int write_matrix_text(const matrix *a, const char *fn, long nhead, ...);
 

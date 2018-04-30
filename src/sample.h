@@ -22,6 +22,7 @@
 
 #ifndef SAMPLE_HEADER
 #define SAMPLE_HEADER
+
 #include "structs.h"
 
 

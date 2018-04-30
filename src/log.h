@@ -21,6 +21,7 @@
 
 #ifndef LOG
 #define LOG
+
 #include <stdarg.h>
 
 int create_log(const char *fn, int overwrite);

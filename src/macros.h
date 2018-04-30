@@ -256,8 +256,8 @@
 #define PAR_PARTICLE_TYPE           "particle_type"
 #define PAR_PDB_FILE_IN             "pdb_file_in"
 #define PAR_PDB_TRANSF_FILE_IN      "pdb_transf_file_in"
-#define PAR_PHASE_SHIFT             "phase_shift"
-#define PAR_PHASE_SPOT              "phase_plate_spot"
+#define PAR_PHASE_SHIFT             "phase_shift"               // phase plate parameters
+#define PAR_PHASE_SPOT              "phase_plate_spot"          // phase plate parameters
 #define PAR_PIXEL_SIZE              "pixel_size"
 #define PAR_RAND_SEED               "rand_seed"
 #define PAR_SMOOTHNESS              "smoothness"

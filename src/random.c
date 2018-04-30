@@ -35,7 +35,6 @@ const rand_state_type rand_int_max = 1 << 16;
 static rand_state_type rand_state = 1;
 
 void rand_seed(unsigned int s) {
-  int i;
   if(s == 0){
     /* The algorithm relies on the state being non-zero. */
     rand_state = 1;

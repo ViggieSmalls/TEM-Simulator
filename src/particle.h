@@ -21,6 +21,7 @@
 
 #ifndef PARTICLE_HEADER
 #define PARTICLE_HEADER
+
 #include "array.h"
 #include "matrix.h"
 #include "structs.h"
@@ -59,7 +60,7 @@ void delete_particle(particle *p);
  * Return:    0 on success, nonzero on failure.
  */
 
-int particle_init(particle *p, 
+int particle_init(particle *p,
                   simulation *sim);
 
 
@@ -98,9 +99,9 @@ int particle_write_log(particle *p);
  * Return:    0 on success, nonzero on failure.
  */
 
-int particle_project(particle *p, 
-                     wavefunction *wf, 
-                     matrix *proj_matrix, 
+int particle_project(particle *p,
+                     wavefunction *wf,
+                     matrix *proj_matrix,
                      double pos[3]);
 
 
@@ -117,9 +118,9 @@ int particle_project(particle *p,
  *            0 otherwise.
  */
 
-int particle_hits_wavefunction(particle *p, 
-                               wavefunction *wf, 
-                               matrix *pm, 
+int particle_hits_wavefunction(particle *p,
+                               wavefunction *wf,
+                               matrix *pm,
                                double pos[3]);
 
 /************************************************************************/

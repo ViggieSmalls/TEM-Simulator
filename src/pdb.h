@@ -21,6 +21,7 @@
 
 #ifndef PDB_HEADER
 #define PDB_HEADER
+
 #include "macros.h"
 #include "structs.h"
 

@@ -22,6 +22,7 @@
 
 #ifndef VOLUME_HEADER
 #define VOLUME_HEADER
+
 #include "input.h"
 #include "matrix.h"
 #include "structs.h"
