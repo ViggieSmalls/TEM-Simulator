@@ -32,6 +32,9 @@
 #include "particleset.h"
 #include "sample.h"
 #include "simulation.h"
+#include "structs.h"
+#include "array.h"
+#include "random.h"
 
 /****************************************************************************/
 
@@ -542,7 +545,7 @@ int wavefunction_propagate(simulation *sim, wavefunction *wf, double slice_th, l
     long i, np;
     double pos[3];
     matrix pm;
-    particle *p, *masked_particle;
+    particle *p, *masked_particle, *random_particle;
     particleset *ps;
     sample *s = get_sample(sim, "");
     geometry *g = get_geometry(sim, "");
@@ -608,6 +611,7 @@ int wavefunction_propagate(simulation *sim, wavefunction *wf, double slice_th, l
             }
         }
         masked_particle = malloc(sizeof(particle));
+        random_particle = malloc(sizeof(particle));
         /* Project particles slice by slice */
         for (k = kmin; k <= kmax; k++) {
             c = 0;
@@ -619,12 +623,22 @@ int wavefunction_propagate(simulation *sim, wavefunction *wf, double slice_th, l
                     WARNING("Particle %s not found.\n", get_param_string(ps->param, PAR_PARTICLE_TYPE));
                     return 1;
                 }
+                if (param_isset(p->param, PAR_RAND_SEED_PARTICLE)) {
+                    rand_seed((unsigned int) get_param_int(p->param, PAR_RAND_SEED_PARTICLE));
+                }
                 init_blank_similar_particle(p, masked_particle);
                 for (i = 0; i < ps->coordinates.m; i++, c++) {
                     if (hit[c] && k == kvec[c]) {
                         if (get_particle_geom(&pm, pos, ps, i, g, tilt)) return 1;
                         pos[2] -= k * slice_th;
-                        mask_particle(p, masked_particle, s, ps, i);
+                        if (get_param_boolean(p->param, PAR_RANDOMIZE_PARTICLE)) {
+                            init_blank_similar_particle(p, random_particle);
+                            randomize_particle(p, random_particle);
+                            mask_particle(random_particle, masked_particle, s, ps, i);
+                            particle_reset(random_particle);
+                        } else {
+                            mask_particle(p, masked_particle, s, ps, i);
+                        }
                         if (particle_project(masked_particle, wf, &pm, pos)) return 1;
                         count++;
                     }
@@ -640,8 +654,13 @@ int wavefunction_propagate(simulation *sim, wavefunction *wf, double slice_th, l
         free(kvec);
         free(hit);
         free(masked_particle);
+        free(random_particle);
     }
     write_log_comment("Projected %i particles.\n", count);
+    /* Reset random seed */
+    if (param_isset(sim->param, PAR_RAND_SEED)) {
+        rand_seed((unsigned int) get_param_int(sim->param, PAR_RAND_SEED));
+    }
     /* Propagate elastic wave to detector plane */
     if (wavefunction_prop_el_opt(wf, tilt, kmax * slice_th)) return 1;
     /* Correct for inelastic scattering in background */

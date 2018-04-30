@@ -260,6 +260,8 @@
 #define PAR_PHASE_SPOT              "phase_plate_spot"          // phase plate parameters
 #define PAR_PIXEL_SIZE              "pixel_size"
 #define PAR_RAND_SEED               "rand_seed"
+#define PAR_RAND_SEED_PARTICLE      "rand_seed_particle"        // randomize particle
+#define PAR_RANDOMIZE_PARTICLE      "randomize_particle"        // randomize particle
 #define PAR_SMOOTHNESS              "smoothness"
 #define PAR_SOURCE                  "source"
 #define PAR_THETA_INCR              "theta_incr"

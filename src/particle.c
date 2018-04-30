@@ -80,7 +80,7 @@ void delete_particle(particle *p) {
 /****************************************************************************/
 
 param_table *particle_param_table(const char *name) {
-    param_table *pt = new_param_table(22, TYPE_PARTICLE, name);
+    param_table *pt = new_param_table(24, TYPE_PARTICLE, name);
     add_param_opt_constr(pt, PAR_VOXEL_SIZE, "d", 0.01, 10);
     add_param_opt_constr(pt, PAR_NX, "l", 1, 1e4);
     add_param_opt_constr(pt, PAR_NY, "l", 1, 1e4);
@@ -107,6 +107,8 @@ param_table *particle_param_table(const char *name) {
     add_param_opt(pt, PAR_CONTRAST_IM, "d");
     add_param_opt_constr(pt, PAR_SMOOTHNESS, "d", 0, 10);
     add_param_opt(pt, PAR_MAKE_POSITIVE, "b");
+    add_param_opt(pt, PAR_RANDOMIZE_PARTICLE, "b");             // randomize particle
+    add_param_opt(pt, PAR_RAND_SEED_PARTICLE, "i");             // randomize particle
     set_comp_descr(pt, "A particle component defines a single particle, for example \
 a macromolecule. Once a particle is defined, one or several copies of the particle \
 can be placed in the sample using a particleset component. A simulation of \
@@ -798,3 +800,23 @@ int init_blank_similar_particle(particle *particle_org, particle *new_particle) 
     return 0;
 }
 
+int randomize_particle(particle *particle_org, particle *new_particle) {
+    array_index_type i, j, k;
+    array_index_type m = particle_org->pot_re.size[0];
+    array_index_type n = particle_org->pot_re.size[1];
+    array_index_type o = particle_org->pot_re.size[2];
+
+    for (k = 0; k < o; k++) {
+        for (j = 0; j < n; j++) {
+            for (i = 0; i < m; i++) {
+                set_array_entry(&new_particle->pot_re, i, j, k, rand_gauss(0, get_array_entry(&particle_org->pot_re, i, j, k)));
+                set_array_entry(&new_particle->pot_im, i, j, k, rand_gauss(0, get_array_entry(&particle_org->pot_im, i, j, k)));
+                set_array_entry(&new_particle->lap_pot_re, i, j, k,
+                                rand_gauss(0, get_array_entry(&particle_org->lap_pot_re, i, j, k)));
+                set_array_entry(&new_particle->lap_pot_im, i, j, k,
+                                rand_gauss(0, get_array_entry(&particle_org->lap_pot_im, i, j, k)));
+            }
+        }
+    }
+    return 0;
+}

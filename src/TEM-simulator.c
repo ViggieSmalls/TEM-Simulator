@@ -57,7 +57,7 @@ License along with TEM-simulator.  If not, see <http://www.gnu.org/licenses/>.\n
                                    "-added phase shift\n"
                                    "-fixed program crashing when no particle input\n"
                                    "-fixed random noise\n", 80, 0);
-};
+}
 
 /****************************************************************************/
 
