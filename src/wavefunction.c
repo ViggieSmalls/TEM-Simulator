@@ -22,12 +22,8 @@
 #include "macros.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include "wavefunction.h"
-#include "array.h"
 #include "electronbeam.h"
-#include "fftw3.h"
-#include "functions.h"
 #include "geometry.h"
 #include "log.h"
 #include "misc.h"
@@ -208,15 +204,17 @@ int wavefunction_prop_el_opt(wavefunction *wf, long tilt, double z) {
                 env = 1.0 / (n * m) * exp(c * x2 + d * x4 + e * x6);
 
                 // phase plate CTF
-                ps = phi * (1 - exp(-x2 / (8 * M_PI * M_PI * s * s) ));
-                chi = a * x2 + b * x4 + ps;
-
-//                //ideal phase plate
-//                if (i == 0 && j == 0) {
-//                    chi = a * x2 + b * x4;
-//                } else {
-//                    chi = a * x2 + b * x4 + 0.5 * M_PI;
-//                }
+                if (s == 0) {  // ideal phase plate
+                    ps = phi;
+                    if (i == 0 && j == 0) {
+                        chi = a * x2 + b * x4;  // do not phase shift dc component
+                    } else {
+                        chi = a * x2 + b * x4 + ps;
+                    }
+                } else {
+                    ps = phi * (1 - exp(-x2 / (8 * M_PI * M_PI * s * s) ));
+                    chi = a * x2 + b * x4 + ps;
+                }
 
                 ctfr = env * cos(chi);
                 ctfi = env * sin(chi);
