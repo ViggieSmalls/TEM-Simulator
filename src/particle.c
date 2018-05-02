@@ -107,7 +107,7 @@ param_table *particle_param_table(const char *name) {
     add_param_opt(pt, PAR_CONTRAST_IM, "d");
     add_param_opt_constr(pt, PAR_SMOOTHNESS, "d", 0, 10);
     add_param_opt(pt, PAR_MAKE_POSITIVE, "b");
-    add_param_opt(pt, PAR_RANDOMIZE_PARTICLE, "b");             // randomize particle
+    add_param_def(pt, PAR_RANDOMIZE_PARTICLE, "b", NO_STRING);  // randomize particle
     add_param_opt(pt, PAR_RAND_SEED_PARTICLE, "i");             // randomize particle
     set_comp_descr(pt, "A particle component defines a single particle, for example \
 a macromolecule. Once a particle is defined, one or several copies of the particle \
@@ -228,6 +228,9 @@ int particle_init(particle *p, simulation *sim) {
             return 1;
         }
     } else if (0 == strcmp(source, PAR_SOURCE__RANDOM)) {
+        if (param_isset(p->param, PAR_RAND_SEED_PARTICLE)) {
+            rand_seed((unsigned int) get_param_int(p->param, PAR_RAND_SEED_PARTICLE));
+        }
         nx = get_param_long(p->param, PAR_NX);
         ny = get_param_long(p->param, PAR_NY);
         nz = get_param_long(p->param, PAR_NZ);
