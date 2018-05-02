@@ -53,10 +53,11 @@ or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for mor
 details.\n", 80, 0);
     print_with_line_breaks("You should have received a copy of the GNU General Public \
 License along with TEM-simulator.  If not, see <http://www.gnu.org/licenses/>.\n", 80, 0);
-    print_with_line_breaks("Changes made to original version 1.3: \n"
-                                   "-added phase shift\n"
-                                   "-fixed program crashing when no particle input\n"
-                                   "-fixed random noise\n", 80, 0);
+    printf("Changes made to original version 1.3: \n");
+    printf("- added phase shift\n");
+    printf("- fixed program crashing when no particle input\n");
+    printf("- fixed random noise\n");
+    printf("- added particle randomization\n");
 }
 
 /****************************************************************************/

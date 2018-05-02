@@ -1,11 +1,13 @@
 # TEM-Simulator
 
-## Installation linux
+## Installation
+ 
+### Linux
 
     cmake CMakeLists.txt 
     make
     
-## Instalation windows
+### Windows
 
 Change CMakeLists.txt to:
 
