@@ -812,12 +812,12 @@ int randomize_particle(particle *particle_org, particle *new_particle) {
     for (k = 0; k < o; k++) {
         for (j = 0; j < n; j++) {
             for (i = 0; i < m; i++) {
-                set_array_entry(&new_particle->pot_re, i, j, k, rand_gauss(0, get_array_entry(&particle_org->pot_re, i, j, k)));
-                set_array_entry(&new_particle->pot_im, i, j, k, rand_gauss(0, get_array_entry(&particle_org->pot_im, i, j, k)));
+                set_array_entry(&new_particle->pot_re, i, j, k, rand_uniform(-get_array_entry(&particle_org->pot_re, i, j, k), get_array_entry(&particle_org->pot_re, i, j, k)));
+                set_array_entry(&new_particle->pot_im, i, j, k, rand_uniform(-get_array_entry(&particle_org->pot_im, i, j, k), get_array_entry(&particle_org->pot_im, i, j, k)));
                 set_array_entry(&new_particle->lap_pot_re, i, j, k,
-                                rand_gauss(0, get_array_entry(&particle_org->lap_pot_re, i, j, k)));
+                                rand_uniform(-get_array_entry(&particle_org->lap_pot_re, i, j, k), get_array_entry(&particle_org->lap_pot_re, i, j, k)));
                 set_array_entry(&new_particle->lap_pot_im, i, j, k,
-                                rand_gauss(0, get_array_entry(&particle_org->lap_pot_im, i, j, k)));
+                                rand_uniform(-get_array_entry(&particle_org->lap_pot_im, i, j, k), get_array_entry(&particle_org->lap_pot_im, i, j, k)));
             }
         }
     }
