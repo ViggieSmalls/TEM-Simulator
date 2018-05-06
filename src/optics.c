@@ -99,7 +99,7 @@ param_table *optics_param_table(const char *name) {
     add_param_req_constr(pt, PAR_COND_AP_ANGLE, "d", 0, HUGE_VAL);
 
     // phase shift parameters
-    add_param_def_constr(pt, PAR_PHASE_SHIFT, "d", "0", 0, 2);
+    add_param_def_constr(pt, PAR_PHASE_SHIFT, "d", "0", 0, 180);
     add_param_def_constr(pt, PAR_PHASE_SPOT, "d", "0", 0, 1);
 
     set_comp_descr(pt, "The optics component specifies the characteristics of \
@@ -135,7 +135,7 @@ lens, measured in milliradian.");
 
     // phase shift parameters description
     set_param_descr(pt, PAR_PHASE_SHIFT, "The phase shift induced by the phase \
-plate, as fraction of pi");
+plate, in degrees");
     set_param_descr(pt, PAR_PHASE_SPOT, "The phase plate spot size in reciprocal \
 space. Measured in 1/nm");
 
@@ -299,7 +299,7 @@ double optics_get_defocus(optics *o, long tilt) {
 
 // phase plate parameters
 double optics_get_phase_shift(optics *o) {
-    return M_PI * get_param_double(o->param, PAR_PHASE_SHIFT);
+    return get_param_double(o->param, PAR_PHASE_SHIFT);
 }
 
 double optics_get_phase_plate_spot_size(optics *o) {

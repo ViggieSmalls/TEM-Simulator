@@ -190,7 +190,7 @@ int wavefunction_prop_el_opt(wavefunction *wf, long tilt, double z) {
 
     // phase plate parameters
     s = optics_get_phase_plate_spot_size(wf->opt);
-    phi = optics_get_phase_shift(wf->opt);
+    phi = optics_get_phase_shift(wf->opt) / 180 * M_PI;
 
     B = min_d(M_PI / wf->pixel_size, 0.5 * k * optics_get_aperture(wf->opt) / optics_get_focal_length(wf->opt));
     fftw_execute(wf->fftplan_wf_f);
