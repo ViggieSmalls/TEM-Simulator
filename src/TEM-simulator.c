@@ -58,6 +58,7 @@ License along with TEM-simulator.  If not, see <http://www.gnu.org/licenses/>.\n
     printf("- fixed program crashing when no particle input\n");
     printf("- fixed random noise\n");
     printf("- added particle randomization\n");
+    printf("- changed rotation of particles from zxz to zyz\n");
 }
 
 /****************************************************************************/

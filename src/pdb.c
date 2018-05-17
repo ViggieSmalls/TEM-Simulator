@@ -521,7 +521,7 @@ int read_pdb_transf_file(array *a, particle *p) {
                 c.data = get_array_entry_ptr(a, 0, 0, i);
                 fill_matrix_diag(&c, 1);
                 rotate3drows(&c, 0, 0, 1, -ANGLE_UNIT * get_matrix_entry(&b, i, 5));
-                rotate3drows(&c, 1, 0, 0, -ANGLE_UNIT * get_matrix_entry(&b, i, 4));
+                rotate3drows(&c, 0, 1, 0, -ANGLE_UNIT * get_matrix_entry(&b, i, 4));
                 rotate3drows(&c, 0, 0, 1, -ANGLE_UNIT * get_matrix_entry(&b, i, 3));
                 for (j = 0; j < 3; j++) {
                     set_array_entry(a, j, 3, i, get_matrix_entry(&b, i, j));

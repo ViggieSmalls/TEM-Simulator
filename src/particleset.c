@@ -261,7 +261,7 @@ int rotate_particle(matrix *pm, particleset *ps, long i) {
         return 1;
     }
     rotate3drows(pm, 0, 0, 1, -get_matrix_entry(&(ps->coordinates), i, 5));
-    rotate3drows(pm, 1, 0, 0, -get_matrix_entry(&(ps->coordinates), i, 4));
+    rotate3drows(pm, 0, 1, 0, -get_matrix_entry(&(ps->coordinates), i, 4));
     rotate3drows(pm, 0, 0, 1, -get_matrix_entry(&(ps->coordinates), i, 3));
     return 0;
 }
